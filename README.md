@@ -1,8 +1,9 @@
 # Web Tail Pty Ltd - Stripe Plugin
  NopCommerce plugin to enable Stripe as a payment method
  
+ Supported Versions: 4.10, 4.20, 4.30
+ 
 This is a simple plugin example demonstrating how to implement Stripe as a payment method for NopCommerce. The project is written in C# and has the following features/functionality:
-
  
  - We are using the current latest version of [Stripe.net](https://github.com/stripe/stripe-dotnet). An extremely high quality C# wrapper for the Stripe API's.
  - We enable a sandbox/production mode.
