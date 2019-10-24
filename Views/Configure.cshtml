@@ -1,0 +1,168 @@
+﻿@model Nop.WebTail.Stripe.Models.ConfigurationModel
+@{
+    Layout = "_ConfigurePlugin";
+
+
+}
+@inject Nop.Core.IWebHelper webHelper
+
+<script>
+    $(document).ready(function () {
+        //$('#@Html.IdFor(model => model.UseSandbox)').click(toggleUseSandbox);
+        //toggleUseSandbox();
+    });
+
+    @*function toggleUseSandbox() {
+        if ($('#@Html.IdFor(model => model.UseSandbox)').is(':checked')) {
+            $('#groupApplicationSecret').hide();
+            $('#liveAccessToken').hide();
+            $('#sandboxAccessToken').show();
+            $('#liveApplicationId').hide();
+            $('#sandboxApplicationId').show();
+        } else {
+            $('#groupApplicationSecret').show();
+            $('#liveAccessToken').show();
+            $('#sandboxAccessToken').hide();
+            $('#liveApplicationId').show();
+            $('#sandboxApplicationId').hide();
+        }
+    }*@
+</script>
+
+<form asp-controller="@StripePaymentDefaults.ControllerName" asp-action="Configure" method="post">
+    <div class="panel-group">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                @Html.Raw(string.Format(T("WebTail.Payments.Stripe.Instructions").Text, Url.RouteUrl(StripePaymentDefaults.AccessTokenRoute, null, webHelper.CurrentRequestProtocol)))
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <nop-label asp-for="UseSandbox" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="UseSandbox" />
+                        <span asp-validation-for="UseSandbox"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <nop-label asp-for="TransactionModeId" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-select asp-for="TransactionModeId" asp-items="Model.TransactionModes" />
+                        <span asp-validation-for="TransactionModeId"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <nop-label asp-for="LiveSecretKey" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="LiveSecretKey" asp-required="true" />
+                        <span asp-validation-for="LiveSecretKey"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <nop-label asp-for="LivePublishableKey" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="LivePublishableKey" asp-required="true" />
+                        <span asp-validation-for="LivePublishableKey"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <nop-label asp-for="TestSecretKey" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="TestSecretKey" asp-required="true" />
+                        <span asp-validation-for="TestSecretKey"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <nop-label asp-for="TestPublishableKey" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="TestPublishableKey" asp-required="true" />
+                        <span asp-validation-for="TestPublishableKey"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <nop-label asp-for="AdditionalFee" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="AdditionalFee" />
+                        <span asp-validation-for="AdditionalFee"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <nop-label asp-for="AdditionalFeePercentage" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="AdditionalFeePercentage" />
+                        <span asp-validation-for="AdditionalFeePercentage"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-9 col-md-offset-3">
+                        <div class="input-group input-group-short">
+                            <div class="input-group-text">
+                                <input type="submit" name="save" class="btn btn-primary" value="@T("Admin.Common.Save")" />
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+@*<div class="form-group">
+        <div class="col-md-3" id="sandboxApplicationId">
+            <nop-label asp-for="SandboxApplicationId" />
+        </div>
+        <div class="col-md-3" id="liveApplicationId">
+            <nop-label asp-for="ApplicationId" />
+        </div>
+        <div class="col-md-9">
+            <nop-editor asp-for="ApplicationId" asp-required="true" />
+            <span asp-validation-for="ApplicationId"></span>
+        </div>
+    </div>
+    <div class="form-group" id="groupApplicationSecret">
+        <div class="col-md-3">
+            <nop-label asp-for="ApplicationSecret" />
+        </div>
+        <div class="col-md-9">
+            <nop-editor asp-for="ApplicationSecret" asp-required="true" />
+            <span asp-validation-for="ApplicationSecret"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-3">
+            <nop-label asp-for="LocationId" />
+        </div>
+        <div class="col-md-9">
+            <nop-select asp-for="LocationId" asp-items="Model.Locations" asp-required="true" />
+            <span asp-validation-for="LocationId"></span>
+        </div>
+    </div>*@
+@*<div class="form-group" id="sandboxAccessToken">
+        <div class="col-md-3">
+            <nop-label asp-for="SandboxAccessToken" />
+        </div>
+        <div class="col-md-9">
+            <nop-editor asp-for="AccessToken" asp-required="true" />
+            <span asp-validation-for="AccessToken"></span>
+        </div>
+    </div>*@

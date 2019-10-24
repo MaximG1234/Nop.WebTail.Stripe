@@ -1,0 +1,97 @@
+﻿@model Nop.WebTail.Stripe.Models.PaymentInfoModel
+@{
+    Layout = "";
+
+    //Html.AddScriptParts(ResourceLocation.Footer, StripePaymentDefaults.PaymentFormScriptPath, excludeFromBundle: true);
+}
+@inject StripePaymentSettings stripePaymentSettings
+@inject Nop.Core.Domain.Orders.OrderSettings orderSettings
+
+<table width="100%" cellspacing="2" cellpadding="1" border="0">
+    <tr>
+        <td>
+            <label asp-for="CreditCardTypes">@T("Payment.SelectCreditCard"):</label>
+        </td>
+        <td>
+            <select asp-for="CreditCardType" asp-items="Model.CreditCardTypes" class="dropdownlists"></select>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label asp-for="CardholderName">@T("Payment.CardholderName"):</label>
+        </td>
+        <td>
+            <input type="text" asp-for="CardholderName" style="width:165px;" autocomplete="off" />
+            <span asp-validation-for="CardholderName"></span>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label asp-for="CardNumber">@T("Payment.CardNumber"):</label>
+        </td>
+        <td>
+            <input type="text" asp-for="CardNumber" style="width:165px;" autocomplete="off" maxlength="22" />
+            <span asp-validation-for="CardNumber"></span>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label asp-for="ExpireMonth">@T("Payment.ExpirationDate"):</label>
+        </td>
+        <td>
+            <select asp-for="ExpireMonth" asp-items="Model.ExpireMonths"></select>
+            /
+            <select asp-for="ExpireYear" asp-items="Model.ExpireYears"></select>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label asp-for="CardCode">@T("Payment.CardCode"):</label>
+        </td>
+        <td>
+            <input type="text" asp-for="CardCode" autocomplete="off" maxlength="4" />
+            <span asp-validation-for="CardCode"></span>
+        </td>
+    </tr>
+</table>
+
+
+<script>
+    $(function () {
+        @*$("#@Html.IdFor(model => model.CardNumber)").change(function () {
+            console.log("Card number changed.");
+            debugger;
+            console.log(Stripe.card.validateCardNumber($(this).val()));
+        })*@
+    });
+</script>
+
+@*@if (!Model.IsGuest && Model.StoredCards.Any())
+    {
+        <table width="100%" cellspacing="2" cellpadding="1" border="0">
+            <tr>
+                <td>
+                    <label asp-for="StoredCardId">@T("Plugins.Payments.Square.Fields.StoredCard"):</label>
+                </td>
+                <td>
+                    <select asp-for="StoredCardId" asp-items="Model.StoredCards" class="square-input"></select>
+                </td>
+            </tr>
+        </table>
+    }*@
+
+
+
+
+@*@if (!Model.IsGuest)
+    {
+        <tr>
+            <td>
+                <label asp-for="SaveCard">@T("Plugins.Payments.Square.Fields.SaveCard"):</label>
+            </td>
+            <td>
+                <input type="checkbox" asp-for="SaveCard" />
+                <span asp-validation-for="SaveCard"></span>
+            </td>
+        </tr>
+    }*@

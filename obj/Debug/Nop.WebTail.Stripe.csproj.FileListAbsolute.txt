@@ -1,0 +1,70 @@
+C:\SourceControl\nopCommerce\nop\Presentation\Nop.Web\Plugins\WebTail.Stripe\Content\js\webtail.stripe.js
+C:\SourceControl\nopCommerce\nop\Presentation\Nop.Web\Plugins\WebTail.Stripe\plugin.json
+C:\SourceControl\nopCommerce\nop\Presentation\Nop.Web\Plugins\WebTail.Stripe\Views\Configure.cshtml
+C:\SourceControl\nopCommerce\nop\Presentation\Nop.Web\Plugins\WebTail.Stripe\Views\PaymentInfo.cshtml
+C:\SourceControl\nopCommerce\nop\Presentation\Nop.Web\Plugins\WebTail.Stripe\Views\_ViewImports.cshtml
+C:\SourceControl\nopCommerce\nop\Presentation\Nop.Web\Plugins\WebTail.Stripe\logo.png
+C:\SourceControl\nopCommerce\nop\Presentation\Nop.Web\Plugins\WebTail.Stripe\Stripe.net.dll
+C:\SourceControl\nopCommerce\nop\Presentation\Nop.Web\Plugins\WebTail.Stripe\Nop.WebTail.Stripe.deps.json
+C:\SourceControl\nopCommerce\nop\Presentation\Nop.Web\Plugins\WebTail.Stripe\Nop.WebTail.Stripe.dll
+C:\SourceControl\nopCommerce\nop\Presentation\Nop.Web\Plugins\WebTail.Stripe\Nop.WebTail.Stripe.pdb
+C:\SourceControl\nopCommerce\nop\Plugins\Nop.WebTail.Stripe\obj\Debug\Nop.WebTail.Stripe.csprojAssemblyReference.cache
+C:\SourceControl\nopCommerce\nop\Plugins\Nop.WebTail.Stripe\obj\Debug\Nop.WebTail.Stripe.csproj.CoreCompileInputs.cache
+C:\SourceControl\nopCommerce\nop\Plugins\Nop.WebTail.Stripe\obj\Debug\Nop.WebTail.Stripe.AssemblyInfoInputs.cache
+C:\SourceControl\nopCommerce\nop\Plugins\Nop.WebTail.Stripe\obj\Debug\Nop.WebTail.Stripe.AssemblyInfo.cs
+C:\SourceControl\nopCommerce\nop\Plugins\Nop.WebTail.Stripe\obj\Debug\Nop.WebTail.Stripe.csproj.CopyComplete
+C:\SourceControl\nopCommerce\nop\Plugins\Nop.WebTail.Stripe\obj\Debug\Nop.WebTail.Stripe.dll
+C:\SourceControl\nopCommerce\nop\Plugins\Nop.WebTail.Stripe\obj\Debug\Nop.WebTail.Stripe.pdb
+C:\SourceControl\nopCommerce\plugins\Nop 4.2\Presentation\Nop.Web\Plugins\WebTail.Stripe\Content\js\webtail.stripe.js
+C:\SourceControl\nopCommerce\plugins\Nop 4.2\Presentation\Nop.Web\Plugins\WebTail.Stripe\plugin.json
+C:\SourceControl\nopCommerce\plugins\Nop 4.2\Presentation\Nop.Web\Plugins\WebTail.Stripe\Views\Configure.cshtml
+C:\SourceControl\nopCommerce\plugins\Nop 4.2\Presentation\Nop.Web\Plugins\WebTail.Stripe\Views\PaymentInfo.cshtml
+C:\SourceControl\nopCommerce\plugins\Nop 4.2\Presentation\Nop.Web\Plugins\WebTail.Stripe\Views\_ViewImports.cshtml
+C:\SourceControl\nopCommerce\plugins\Nop 4.2\Presentation\Nop.Web\Plugins\WebTail.Stripe\logo.png
+C:\SourceControl\nopCommerce\plugins\Nop 4.2\Presentation\Nop.Web\Plugins\WebTail.Stripe\Stripe.net.dll
+C:\SourceControl\nopCommerce\plugins\Nop 4.2\Presentation\Nop.Web\Plugins\WebTail.Stripe\Nop.WebTail.Stripe.deps.json
+C:\SourceControl\nopCommerce\plugins\Nop 4.2\Presentation\Nop.Web\Plugins\WebTail.Stripe\Nop.WebTail.Stripe.dll
+C:\SourceControl\nopCommerce\plugins\Nop 4.2\Presentation\Nop.Web\Plugins\WebTail.Stripe\Nop.WebTail.Stripe.pdb
+C:\SourceControl\nopCommerce\Nop 4.2\Presentation\Nop.Web\Plugins\WebTail.Stripe\Content\js\webtail.stripe.js
+C:\SourceControl\nopCommerce\Nop 4.2\Presentation\Nop.Web\Plugins\WebTail.Stripe\plugin.json
+C:\SourceControl\nopCommerce\Nop 4.2\Presentation\Nop.Web\Plugins\WebTail.Stripe\Views\Configure.cshtml
+C:\SourceControl\nopCommerce\Nop 4.2\Presentation\Nop.Web\Plugins\WebTail.Stripe\Views\PaymentInfo.cshtml
+C:\SourceControl\nopCommerce\Nop 4.2\Presentation\Nop.Web\Plugins\WebTail.Stripe\Views\_ViewImports.cshtml
+C:\SourceControl\nopCommerce\Nop 4.2\Presentation\Nop.Web\Plugins\WebTail.Stripe\logo.png
+C:\SourceControl\nopCommerce\Nop 4.2\Presentation\Nop.Web\Plugins\WebTail.Stripe\Stripe.net.dll
+C:\SourceControl\nopCommerce\Nop 4.2\Presentation\Nop.Web\Plugins\WebTail.Stripe\Nop.WebTail.Stripe.deps.json
+C:\SourceControl\nopCommerce\Nop 4.2\Presentation\Nop.Web\Plugins\WebTail.Stripe\Nop.WebTail.Stripe.dll
+C:\SourceControl\nopCommerce\Nop 4.2\Presentation\Nop.Web\Plugins\WebTail.Stripe\Nop.WebTail.Stripe.pdb
+C:\SourceControl\nopCommerce\plugins\v4.2\Nop.WebTail.Stripe\obj\Debug\Nop.WebTail.Stripe.csprojAssemblyReference.cache
+C:\SourceControl\nopCommerce\plugins\v4.2\Nop.WebTail.Stripe\obj\Debug\Nop.WebTail.Stripe.csproj.CoreCompileInputs.cache
+C:\SourceControl\nopCommerce\plugins\v4.2\Nop.WebTail.Stripe\obj\Debug\Nop.WebTail.Stripe.AssemblyInfoInputs.cache
+C:\SourceControl\nopCommerce\plugins\v4.2\Nop.WebTail.Stripe\obj\Debug\Nop.WebTail.Stripe.AssemblyInfo.cs
+C:\SourceControl\nopCommerce\plugins\v4.2\Nop.WebTail.Stripe\obj\Debug\Nop.WebTail.Stripe.csproj.CopyComplete
+C:\SourceControl\nopCommerce\plugins\v4.2\Nop.WebTail.Stripe\obj\Debug\Nop.WebTail.Stripe.dll
+C:\SourceControl\nopCommerce\plugins\v4.2\Nop.WebTail.Stripe\obj\Debug\Nop.WebTail.Stripe.pdb
+C:\SourceControl\nopCommerce\nop 4.2 dist\Presentation\Nop.Web\Plugins\WebTail.Stripe\Content\js\webtail.stripe.js
+C:\SourceControl\nopCommerce\nop 4.2 dist\Presentation\Nop.Web\Plugins\WebTail.Stripe\plugin.json
+C:\SourceControl\nopCommerce\nop 4.2 dist\Presentation\Nop.Web\Plugins\WebTail.Stripe\Views\Configure.cshtml
+C:\SourceControl\nopCommerce\nop 4.2 dist\Presentation\Nop.Web\Plugins\WebTail.Stripe\Views\PaymentInfo.cshtml
+C:\SourceControl\nopCommerce\nop 4.2 dist\Presentation\Nop.Web\Plugins\WebTail.Stripe\Views\_ViewImports.cshtml
+C:\SourceControl\nopCommerce\nop 4.2 dist\Presentation\Nop.Web\Plugins\WebTail.Stripe\logo.png
+C:\SourceControl\nopCommerce\nop 4.2 dist\Presentation\Nop.Web\Plugins\WebTail.Stripe\Stripe.net.dll
+C:\SourceControl\nopCommerce\nop 4.2 dist\Presentation\Nop.Web\Plugins\WebTail.Stripe\Nop.WebTail.Stripe.deps.json
+C:\SourceControl\nopCommerce\nop 4.2 dist\Presentation\Nop.Web\Plugins\WebTail.Stripe\Nop.WebTail.Stripe.dll
+C:\SourceControl\nopCommerce\nop 4.2 dist\Presentation\Nop.Web\Plugins\WebTail.Stripe\Nop.WebTail.Stripe.pdb
+C:\SourceControl\nopCommerce\Nop-4.2\Presentation\Nop.Web\Plugins\WebTail.Stripe\Content\js\webtail.stripe.js
+C:\SourceControl\nopCommerce\Nop-4.2\Presentation\Nop.Web\Plugins\WebTail.Stripe\plugin.json
+C:\SourceControl\nopCommerce\Nop-4.2\Presentation\Nop.Web\Plugins\WebTail.Stripe\Views\Configure.cshtml
+C:\SourceControl\nopCommerce\Nop-4.2\Presentation\Nop.Web\Plugins\WebTail.Stripe\Views\PaymentInfo.cshtml
+C:\SourceControl\nopCommerce\Nop-4.2\Presentation\Nop.Web\Plugins\WebTail.Stripe\Views\_ViewImports.cshtml
+C:\SourceControl\nopCommerce\Nop-4.2\Presentation\Nop.Web\Plugins\WebTail.Stripe\logo.png
+C:\SourceControl\nopCommerce\Nop-4.2\Presentation\Nop.Web\Plugins\WebTail.Stripe\Nop.WebTail.Stripe.deps.json
+C:\SourceControl\nopCommerce\Nop-4.2\Presentation\Nop.Web\Plugins\WebTail.Stripe\Nop.WebTail.Stripe.dll
+C:\SourceControl\nopCommerce\Nop-4.2\Presentation\Nop.Web\Plugins\WebTail.Stripe\Nop.WebTail.Stripe.pdb
+C:\SourceControl\nopCommerce\WebTail-Plugins\Nop.WebTail.Stripe\obj\Debug\Nop.WebTail.Stripe.csprojAssemblyReference.cache
+C:\SourceControl\nopCommerce\WebTail-Plugins\Nop.WebTail.Stripe\obj\Debug\Nop.WebTail.Stripe.AssemblyInfoInputs.cache
+C:\SourceControl\nopCommerce\WebTail-Plugins\Nop.WebTail.Stripe\obj\Debug\Nop.WebTail.Stripe.AssemblyInfo.cs
+C:\SourceControl\nopCommerce\WebTail-Plugins\Nop.WebTail.Stripe\obj\Debug\Nop.WebTail.Stripe.csproj.CopyComplete
+C:\SourceControl\nopCommerce\WebTail-Plugins\Nop.WebTail.Stripe\obj\Debug\Nop.WebTail.Stripe.dll
+C:\SourceControl\nopCommerce\WebTail-Plugins\Nop.WebTail.Stripe\obj\Debug\Nop.WebTail.Stripe.pdb
+C:\SourceControl\nopCommerce\Nop-4.2\Presentation\Nop.Web\Plugins\WebTail.Stripe\Stripe.net.dll
