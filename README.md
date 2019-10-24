@@ -23,3 +23,10 @@ We use this plugin in production and intend to actively maintain it, but also en
 4. Find **'Credit Card (Stripe)'** and press install.
 5. Restart site to apply changes.
 6. Configure your API keys and press save.
+
+
+
+![Configuration](https://github.com/MaximG1234/Nop.WebTail.Stripe/raw/master/Readme/configuration.PNG)
+
+![enter image description here](https://github.com/MaximG1234/Nop.WebTail.Stripe/raw/master/Readme/credit%20card%20screen.PNG)
+![enter image description here](https://github.com/MaximG1234/Nop.WebTail.Stripe/raw/master/Readme/payment%20method.PNG)
