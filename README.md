@@ -8,8 +8,11 @@ This is a simple plugin example demonstrating how to implement Stripe as a payme
  3. We enable multiple capture modes.
 	 a. Authorize - Used to pre-authorize a purchase and place a holder on the customers credit card for the order amount.
 	 b. Capture - Used to immediately authorize the full transaction amount and begin the funds transfer process.
- 4. We enable the use 
+ 4. We enable additional fees to be charged for the use of this payment method.
+	a. Additional fees can also be a percentage of the total order.
 
-It uses the cur
+We use this plugin in production and intend to actively maintain it, but also encourage other contributors to help improve the code and users to provide feedback and suggestions.
  
- To install 
+
+## Installation
+dsadsa
