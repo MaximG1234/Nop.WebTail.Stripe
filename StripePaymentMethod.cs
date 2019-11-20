@@ -9,6 +9,7 @@ using Nop.Services.Configuration;
 using Nop.Services.Customers;
 using Nop.Services.Directory;
 using Nop.Services.Localization;
+using Nop.Services.Logging;
 using Nop.Services.Payments;
 using Nop.Services.Plugins;
 using Nop.Services.Stores;
@@ -35,9 +36,19 @@ namespace Nop.WebTail.Stripe
         private readonly ISettingService _settingService;
         private readonly IStoreService _storeService;
         private readonly IWebHelper _webHelper;
-        
+        private readonly ILogger _logger;
 
-        public StripePaymentMethod(ILocalizationService localizationService, IGenericAttributeService genericAttributeService, ICurrencyService currencyService, ICustomerService customerService, IStoreService storeService, ISettingService settingService, IPaymentService paymentService, IWebHelper webHelper, StripePaymentSettings stripePaymentSettings, CurrencySettings currencySettings)
+        public StripePaymentMethod(ILocalizationService localizationService, 
+                                   IGenericAttributeService genericAttributeService,
+                                   ICurrencyService currencyService, 
+                                   ICustomerService customerService, 
+                                   IStoreService storeService,
+                                   ISettingService settingService, 
+                                   IPaymentService paymentService,
+                                   IWebHelper webHelper, 
+                                   ILogger logger,
+                                   StripePaymentSettings stripePaymentSettings,
+                                   CurrencySettings currencySettings)
         {
             this._localizationService = localizationService;
             this._genericAttributeService = genericAttributeService;
@@ -49,6 +60,7 @@ namespace Nop.WebTail.Stripe
             this._paymentService = paymentService;
             this._stripePaymentSettings = stripePaymentSettings;
             this._currencySettings = currencySettings;
+            this._logger = logger;
         }
 
         public bool SupportCapture => true;
@@ -170,40 +182,38 @@ namespace Nop.WebTail.Stripe
 
         public ProcessPaymentResult ProcessPayment(ProcessPaymentRequest processPaymentRequest, bool isRecurringPayment)
         {
-            try
+            
+            var currentStore = EngineContext.Current.Resolve<IStoreContext>().CurrentStore;
+            var chargeResponse = processPaymentRequest.CreateCharge(this._stripePaymentSettings, 
+                                                                    this._currencySettings,
+                                                                    currentStore, 
+                                                                    this._customerService, 
+                                                                    this._currencyService, 
+                                                                    this._genericAttributeService);
+                
+            if (chargeResponse.GetStatus() == StripeChargeStatus.Failed)
+                throw new NopException(chargeResponse.FailureMessage);
+                
+            string transactionResult = $"Transaction was processed by using Stripe. Status is {chargeResponse.GetStatus()}";
+            var result = new ProcessPaymentResult()
             {
-                var currentStore = EngineContext.Current.Resolve<IStoreContext>().CurrentStore;
-                var chargeResponse = processPaymentRequest.CreateCharge(this._stripePaymentSettings, this._currencySettings, currentStore, this._customerService, this._currencyService, this._genericAttributeService, isRecurringPayment);
+                NewPaymentStatus = chargeResponse.GetPaymentStatus(this._stripePaymentSettings.TransactionMode)
+            };
 
-                if (chargeResponse.GetStatus() == StripeChargeStatus.Failed)
-                    throw new NopException(chargeResponse.FailureMessage);
-
-                string transactionResult = $"Transaction was processed by using Stripe. Status is {chargeResponse.GetStatus()}";
-
-                var result = new ProcessPaymentResult()
-                {
-                    NewPaymentStatus = chargeResponse.GetPaymentStatus(this._stripePaymentSettings.TransactionMode)
-                };
-
-
-                if (this._stripePaymentSettings.TransactionMode == TransactionMode.Authorize)
-                {
-                    result.AuthorizationTransactionId = chargeResponse.Id;
-                    result.AuthorizationTransactionResult = transactionResult;
-                }
-
-                if (this._stripePaymentSettings.TransactionMode == TransactionMode.Charge)
-                {
-                    result.CaptureTransactionId = chargeResponse.Id;
-                    result.CaptureTransactionResult = transactionResult;
-                }
-
-                return result;
-            }
-            catch (Exception e)
+            if (this._stripePaymentSettings.TransactionMode == TransactionMode.Authorize)
             {
-                throw;
+                result.AuthorizationTransactionId = chargeResponse.Id;
+                result.AuthorizationTransactionResult = transactionResult;
             }
+                
+            if (this._stripePaymentSettings.TransactionMode == TransactionMode.Charge)
+            {
+                result.CaptureTransactionId = chargeResponse.Id;
+                result.CaptureTransactionResult = transactionResult;
+            }
+                
+            return result;
+            
             
         }
 
@@ -278,7 +288,7 @@ namespace Nop.WebTail.Stripe
                 LivePublishableKey = string.Empty,
                 LiveSecretKey = string.Empty,
                 TestPublishableKey = string.Empty,
-                TestSecretKey = string.Empty
+                TestSecretKey = string.Empty,
             });
 
             this._localizationService.AddOrUpdatePluginLocaleResource("Webtail.Payments.Stripe.Instructions", @"

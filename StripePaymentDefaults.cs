@@ -12,10 +12,11 @@ namespace Nop.WebTail.Stripe
         public const string PaymentFormScriptPath = "https://js.stripe.com/v2/";
         public const string AccessTokenRoute = "https://dashboard.stripe.com/account/apikeys";
 
-        public const string CustomerIdStripeKey = "CustomerId";
+        //public const string CustomerIdStripeKey = "CustomerId";
         public const string SaveCardKey = "SaveCard";
 
-        public const string CustomerIdAttribute = "StripeCustomerId";
+        public const string CustomerIdAttributeSandbox = "StripeCustomerIdSandbox";
+        public const string CustomerIdAttributeProduction = "StripeCustomerIdProduction";
 
     }
 }

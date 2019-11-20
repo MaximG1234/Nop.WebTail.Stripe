@@ -121,7 +121,7 @@ namespace Nop.WebTail.Stripe.Extensions
             if (customer.BillingAddress != null)
             {
                 creditCardOptions.AddressCity = customer.BillingAddress.City;
-                creditCardOptions.AddressCountry = customer.BillingAddress.Country.Name;
+                creditCardOptions.AddressCountry = customer.BillingAddress.Country?.Name;
                 creditCardOptions.AddressLine1 = customer.BillingAddress.Address1;
                 creditCardOptions.AddressLine2 = customer.BillingAddress.Address2;
                 creditCardOptions.AddressState = customer.BillingAddress.StateProvince?.Name;
@@ -146,7 +146,7 @@ namespace Nop.WebTail.Stripe.Extensions
             return chargeRequest;
         }
 
-        public static stripe.CustomerCreateOptions CreateCustomerOptions(this Core.Domain.Customers.Customer customer)
+        public static stripe.CustomerCreateOptions CreateCustomerOptions(this Core.Domain.Customers.Customer customer, StripePaymentSettings paymentSettings)
         {
             var customerCreateOptions = new stripe.CustomerCreateOptions()
             {
@@ -155,58 +155,72 @@ namespace Nop.WebTail.Stripe.Extensions
 
             customerCreateOptions.Metadata = new Dictionary<string, string>()
             {
-                { StripePaymentDefaults.CustomerIdStripeKey, customer.Id.ToString() }
+                { paymentSettings.GetCustomerIdKey(), customer.Id.ToString() }
             };
                 
             return customerCreateOptions;
         }
 
-        public static stripe.Customer GetOrCreateCustomer(this stripe.CustomerService customerService, Core.Domain.Customers.Customer customer, IGenericAttributeService genericAttributeService)
+        public static stripe.Customer GetOrCreateCustomer(this stripe.CustomerService customerService, Core.Domain.Customers.Customer customer, IGenericAttributeService genericAttributeService, StripePaymentSettings paymentSettings)
         {
-            string stripeCustomerId = genericAttributeService.GetAttribute<string>(customer, StripePaymentDefaults.CustomerIdAttribute);
-            stripe.Customer result = customerService.GetOrCreateCustomer(customer, stripeCustomerId);
+            string stripeCustomerId = genericAttributeService.GetAttribute<string>(customer, paymentSettings.GetCustomerIdKey());
+            stripe.Customer result = customerService.GetOrCreateCustomer(customer, stripeCustomerId, paymentSettings);
 
             if (string.IsNullOrEmpty(stripeCustomerId))
-                genericAttributeService.SaveAttribute(customer, StripePaymentDefaults.CustomerIdAttribute, result.Id);
+                genericAttributeService.SaveAttribute(customer, paymentSettings.GetCustomerIdKey(), result.Id);
 
             return result;
         }
 
-        public static stripe.Customer GetOrCreateCustomer(this stripe.CustomerService customerService, Core.Domain.Customers.Customer customer, string stripeCustomerId)
+        public static stripe.Customer GetOrCreateCustomer(this stripe.CustomerService customerService, Core.Domain.Customers.Customer customer, string stripeCustomerId, StripePaymentSettings paymentSettings)
         {
             if (!string.IsNullOrEmpty(stripeCustomerId))
                 return customerService.Get(stripeCustomerId);
             else
-                return customerService.Create(customer.CreateCustomerOptions());
+                return customerService.Create(customer.CreateCustomerOptions(paymentSettings));
         }
 
         public static stripe.Charge CreateCharge(this ProcessPaymentRequest processPaymentRequest, StripePaymentSettings stripePaymentSettings, CurrencySettings currencySettings, Store store, 
-                                                      ICustomerService customerService, ICurrencyService currencyService, IGenericAttributeService genericAttributeService, bool isRecurringPayment)
+                                                      ICustomerService customerService, ICurrencyService currencyService, IGenericAttributeService genericAttributeService)
         {
-            var customer = customerService.GetCustomerById(processPaymentRequest.CustomerId);
-            if (customer == null)
-                throw new NopException("Customer cannot be loaded");
-            
-            var currency = currencyService.GetCurrencyById(currencySettings.PrimaryStoreCurrencyId);
-            if (currency == null)
-                throw new NopException("Primary store currency cannot be loaded");
+            int substep = 0;
 
-            if (!Enum.TryParse(currency.CurrencyCode, out StripeCurrency stripeCurrency))
-                throw new NopException($"The {currency.CurrencyCode} currency is not supported by Stripe");
+            try
+            {
+                var customer = customerService.GetCustomerById(processPaymentRequest.CustomerId);
+                if (customer == null)
+                    throw new NopException("Customer cannot be loaded");
+                substep = 1;
+                var currency = currencyService.GetCurrencyById(currencySettings.PrimaryStoreCurrencyId);
+                if (currency == null)
+                    throw new NopException("Primary store currency cannot be loaded");
+                substep = 2;
+                if (!Enum.TryParse(currency.CurrencyCode, out StripeCurrency stripeCurrency))
+                    throw new NopException($"The {currency.CurrencyCode} currency is not supported by Stripe");
+                substep = 3;
 
-            
-            var stripeCustomerService = new stripe.CustomerService(stripePaymentSettings.GetStripeClient());
-            var chargeService = new stripe.ChargeService(stripePaymentSettings.GetStripeClient());
-            var tokenService = new stripe.TokenService(stripePaymentSettings.GetStripeClient());
-            
-            stripe.Customer stripeCustomer = stripeCustomerService.GetOrCreateCustomer(customer, genericAttributeService);
-            stripe.TokenCreateOptions tokenOptions = processPaymentRequest.CreateTokenOptions(customer, stripeCurrency);
-            stripe.Token token = tokenService.Create(tokenOptions);
-            stripe.ChargeCreateOptions chargeOptions = processPaymentRequest.CreateChargeOptions(store, token, stripePaymentSettings.TransactionMode, stripeCurrency);
-            
-            stripe.Charge charge = chargeService.Create(chargeOptions);
+                var stripeCustomerService = new stripe.CustomerService(stripePaymentSettings.GetStripeClient());
+                var chargeService = new stripe.ChargeService(stripePaymentSettings.GetStripeClient());
+                var tokenService = new stripe.TokenService(stripePaymentSettings.GetStripeClient());
+                substep = 4;
+                var stripeCustomer = stripeCustomerService.GetOrCreateCustomer(customer, genericAttributeService, stripePaymentSettings);
+                substep = 5;
+                var tokenOptions = processPaymentRequest.CreateTokenOptions(customer, stripeCurrency);
+                substep = 6;
+                var token = tokenService.Create(tokenOptions);
+                substep = 7;
+                var chargeOptions = processPaymentRequest.CreateChargeOptions(store, token, stripePaymentSettings.TransactionMode, stripeCurrency);
+                substep = 8;
 
-            return charge;
+                var charge = chargeService.Create(chargeOptions);
+                substep = 9;
+                return charge;
+            } 
+            catch (Exception ex)
+            {
+                throw new Exception($"Failed at substep {substep}", ex);
+            }
+            
         }
 
         public static stripe.Refund CreateRefund(this RefundPaymentRequest refundPaymentRequest, StripePaymentSettings stripePaymentSettings, CurrencySettings currencySettings, ICurrencyService currencyService)

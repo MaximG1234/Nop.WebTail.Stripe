@@ -14,9 +14,7 @@
     <Authors>Web Tail Pty Ltd</Authors>
     <PackageLicenseUrl></PackageLicenseUrl>
     <PackageProjectUrl>https://www.webtail.com.au/</PackageProjectUrl>
-    <OutputPath>..\..\Nop-4.2\Presentation\Nop.Web\Plugins\WebTail.Stripe\</OutputPath>
-    <OutDir>$(OutputPath)</OutDir>
-
+   
     <!--Set this parameter to true to get the dlls copied from the NuGet cache to the output of your project.
     You need to set this parameter to true if your plugin has a nuget package 
     to ensure that the dlls copied from the NuGet cache to the output of your project-->
@@ -28,11 +26,15 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <OutputPath>..\..\Nop-4.2\Presentation\Nop.Web\Plugins\WebTail.Stripe\</OutputPath>
+    <!--<OutputPath>..\..\Nop-4.1\Presentation\Nop.Web\Plugins\WebTail.Stripe\</OutputPath>
+    <OutputPath>..\..\Nop-4.2\Presentation\Nop.Web\Plugins\WebTail.Stripe\</OutputPath>-->
+    <OutputPath>..\..\Nop-4.3\Presentation\Nop.Web\Plugins\WebTail.Stripe\</OutputPath>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <OutputPath>..\..\Nop-4.2\Presentation\Nop.Web\Plugins\WebTail.Stripe\</OutputPath>
+    <!--<OutputPath>..\..\Nop-4.1\Presentation\Nop.Web\Plugins\WebTail.Stripe\</OutputPath>
+    <OutputPath>..\..\Nop-4.2\Presentation\Nop.Web\Plugins\WebTail.Stripe\</OutputPath>-->
+    <OutputPath>..\..\Nop-4.3\Presentation\Nop.Web\Plugins\WebTail.Stripe\</OutputPath>
   </PropertyGroup>
 
   <ItemGroup>

@@ -27,6 +27,18 @@ namespace Nop.WebTail.Stripe
             }
         }
 
+        public string GetCustomerIdKey()
+        {
+            if (this.UseSandbox)
+            {
+                return StripePaymentDefaults.CustomerIdAttributeSandbox;
+            }
+            else
+            {
+                return StripePaymentDefaults.CustomerIdAttributeProduction;
+            }
+        }
+
         public StripeClient GetStripeClient()
         {
             try
