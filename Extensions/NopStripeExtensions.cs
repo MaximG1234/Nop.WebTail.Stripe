@@ -136,7 +136,7 @@ namespace Nop.WebTail.Stripe.Extensions
 
             var chargeRequest = new stripe.ChargeCreateOptions()
             {
-                Amount = (int)processPaymentRequest.OrderTotal * 100,
+                Amount = (int)(processPaymentRequest.OrderTotal * 100),
                 Capture = transactionMode == TransactionMode.Charge,
                 Source = token.Id,
                 StatementDescriptor = $"{store.Name.ToStripeDescriptor()}",
