@@ -2,7 +2,7 @@
   "Group": "Payment methods",
   "FriendlyName": "Credit Card (Stripe)",
   "SystemName": "WebTail.Stripe",
-  "Version": "1.14",
+  "Version": "1.16",
   "SupportedVersions": [ "4.30", "4.20", "4.10" ],
   "Author": "Web Tail Pty Ltd",
   "DisplayOrder": 1,
