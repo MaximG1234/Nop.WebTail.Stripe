@@ -211,7 +211,7 @@ namespace Nop.WebTail.Stripe.Extensions
             ICurrencyService currencyService, 
             IGenericAttributeService genericAttributeService)
         {
-          
+
             var customer = customerService.GetCustomerById(processPaymentRequest.CustomerId);
             if (customer == null)
                 throw new NopException("Customer cannot be loaded");
@@ -223,11 +223,13 @@ namespace Nop.WebTail.Stripe.Extensions
             if (!Enum.TryParse(currency.CurrencyCode, out StripeCurrency stripeCurrency))
                 throw new NopException($"The {currency.CurrencyCode} currency is not supported by Stripe");
              
+
             var stripeCustomerService = new stripe.CustomerService(stripePaymentSettings.GetStripeClient());
             var chargeService = new stripe.ChargeService(stripePaymentSettings.GetStripeClient());
             var tokenService = new stripe.TokenService(stripePaymentSettings.GetStripeClient());
                 
             var stripeCustomer = stripeCustomerService.GetOrCreateCustomer(customer, genericAttributeService, stripePaymentSettings);
+
             var tokenOptions = processPaymentRequest.CreateTokenOptions(customerService, stateProvinceService, countryService, stripeCurrency);
             var token = tokenService.Create(tokenOptions);
             var chargeOptions = processPaymentRequest.CreateChargeOptions(store, token, stripePaymentSettings.TransactionMode, stripeCurrency);
@@ -235,7 +237,6 @@ namespace Nop.WebTail.Stripe.Extensions
             var charge = chargeService.Create(chargeOptions);
             return charge;
            
-            
         }
 
         public static stripe.Refund CreateRefund(this RefundPaymentRequest refundPaymentRequest, StripePaymentSettings stripePaymentSettings, CurrencySettings currencySettings, ICurrencyService currencyService)
