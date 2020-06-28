@@ -61,7 +61,6 @@ namespace Nop.WebTail.Stripe.Controllers
         }
 
         [HttpPost]
-        [AdminAntiForgery]
         public IActionResult Configure(ConfigurationModel model)
         {
             if (!this._permissionService.Authorize(StandardPermissionProvider.ManagePaymentMethods))
