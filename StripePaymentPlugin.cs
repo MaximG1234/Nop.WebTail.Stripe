@@ -23,25 +23,29 @@ using stripe = Stripe;
 
 namespace Nop.WebTail.Stripe
 {
-    public class StripePaymentMethod : BasePlugin, IPaymentMethod
+    public class StripePaymentPlugin : BasePlugin, IPaymentMethod
     {
         private readonly StripePaymentSettings _stripePaymentSettings;
         private readonly CurrencySettings _currencySettings;
 
         private readonly IGenericAttributeService _genericAttributeService;
+        private readonly IStateProvinceService _stateProvinceService;
         private readonly ILocalizationService _localizationService;
         private readonly ICurrencyService _currencyService;
-        private readonly ICustomerService _customerService;
+        private readonly ICustomerService _customerService;        
+        private readonly ICountryService _countryService;
         private readonly IPaymentService _paymentService;
         private readonly ISettingService _settingService;
         private readonly IStoreService _storeService;
         private readonly IWebHelper _webHelper;
         private readonly ILogger _logger;
 
-        public StripePaymentMethod(ILocalizationService localizationService, 
+        public StripePaymentPlugin(ILocalizationService localizationService, 
                                    IGenericAttributeService genericAttributeService,
-                                   ICurrencyService currencyService, 
-                                   ICustomerService customerService, 
+                                   ICurrencyService currencyService,
+                                   ICustomerService customerService,
+                                   IStateProvinceService stateProvinceService,
+                                   ICountryService countryService,
                                    IStoreService storeService,
                                    ISettingService settingService, 
                                    IPaymentService paymentService,
@@ -54,6 +58,8 @@ namespace Nop.WebTail.Stripe
             this._genericAttributeService = genericAttributeService;
             this._currencyService = currencyService;
             this._customerService = customerService;
+            this._stateProvinceService = stateProvinceService;
+            this._countryService = countryService;
             this._webHelper = webHelper;
             this._storeService = storeService;
             this._settingService = settingService;
@@ -188,6 +194,8 @@ namespace Nop.WebTail.Stripe
                                                                     this._currencySettings,
                                                                     currentStore, 
                                                                     this._customerService, 
+                                                                    this._stateProvinceService,
+                                                                    this._countryService,
                                                                     this._currencyService, 
                                                                     this._genericAttributeService);
                 

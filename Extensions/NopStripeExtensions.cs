@@ -8,8 +8,10 @@ using Nop.Services.Customers;
 using Nop.Services.Directory;
 using Nop.Services.Payments;
 using Stripe;
+using Stripe.Issuing;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using stripe = Stripe;
 
@@ -98,17 +100,25 @@ namespace Nop.WebTail.Stripe.Extensions
             }
         }
         
-        public static stripe.TokenCreateOptions CreateTokenOptions(this ProcessPaymentRequest processPaymentRequest, Core.Domain.Customers.Customer customer, StripeCurrency stripeCurrency)
+        public static stripe.TokenCreateOptions CreateTokenOptions(this ProcessPaymentRequest processPaymentRequest,
+            ICustomerService customerService,
+            IStateProvinceService stateProvinceService,
+            ICountryService countryService,
+            StripeCurrency stripeCurrency)
         {
             return new stripe.TokenCreateOptions()
             {
-                Card = processPaymentRequest.CreateCreditCardOptions(customer, stripeCurrency)
+                Card = processPaymentRequest.CreateCreditCardOptions(customerService, stateProvinceService, countryService, stripeCurrency)
             };
         }
-        
+
         public static stripe.CreditCardOptions CreateCreditCardOptions(this ProcessPaymentRequest processPaymentRequest,
-            Core.Domain.Customers.Customer customer, StripeCurrency stripeCurrency)
+            ICustomerService customerService,
+            IStateProvinceService stateProvinceService,
+            ICountryService countryService,
+            StripeCurrency stripeCurrency)
         {
+            
             var creditCardOptions = new stripe.CreditCardOptions()
             {
                 Cvc = processPaymentRequest.CreditCardCvv2,
@@ -119,15 +129,25 @@ namespace Nop.WebTail.Stripe.Extensions
                 Number = processPaymentRequest.CreditCardNumber,
             };
 
-            //if (customer.BillingAddress != null)
-            //{
-            //    creditCardOptions.AddressCity = customer.BillingAddress.City;
-            //    creditCardOptions.AddressCountry = customer.BillingAddress.Country?.Name;
-            //    creditCardOptions.AddressLine1 = customer.BillingAddress.Address1;
-            //    creditCardOptions.AddressLine2 = customer.BillingAddress.Address2;
-            //    creditCardOptions.AddressState = customer.BillingAddress.StateProvince?.Name;
-            //    creditCardOptions.AddressZip = customer.BillingAddress.ZipPostalCode;
-            //}
+            var customer = customerService.GetCustomerById(processPaymentRequest.CustomerId);
+            var customerBillingAddress = customerService.GetCustomerBillingAddress(customer);
+            var billingStateProvince = customerBillingAddress.StateProvinceId.HasValue ?
+                                                    stateProvinceService.GetStateProvinceById(customerBillingAddress.StateProvinceId.Value) :
+                                                    null;
+
+            var billingCountry = customerBillingAddress != null && customerBillingAddress.CountryId.HasValue ?
+                            countryService.GetCountryById(customerBillingAddress.CountryId.Value) :
+                            null;
+
+            if (customer != null && customerBillingAddress != null)
+            {
+                creditCardOptions.AddressCity = customerBillingAddress.City;
+                creditCardOptions.AddressCountry = billingCountry?.Name;
+                creditCardOptions.AddressLine1 = customerBillingAddress.Address1;
+                creditCardOptions.AddressLine2 = customerBillingAddress.Address2;
+                creditCardOptions.AddressState = billingStateProvince?.Name;
+                creditCardOptions.AddressZip = customerBillingAddress.ZipPostalCode;
+            }
 
             return creditCardOptions;
         }
@@ -181,37 +201,40 @@ namespace Nop.WebTail.Stripe.Extensions
                 return customerService.Create(customer.CreateCustomerOptions(paymentSettings));
         }
 
-        public static stripe.Charge CreateCharge(this ProcessPaymentRequest processPaymentRequest, StripePaymentSettings stripePaymentSettings, CurrencySettings currencySettings, Store store, 
-                                                      ICustomerService customerService, ICurrencyService currencyService, IGenericAttributeService genericAttributeService)
+        public static stripe.Charge CreateCharge(this ProcessPaymentRequest processPaymentRequest, 
+            StripePaymentSettings stripePaymentSettings,
+            CurrencySettings currencySettings, 
+            Store store, 
+            ICustomerService customerService,
+            IStateProvinceService stateProvinceService,
+            ICountryService countryService,
+            ICurrencyService currencyService, 
+            IGenericAttributeService genericAttributeService)
         {
-           
+
             var customer = customerService.GetCustomerById(processPaymentRequest.CustomerId);
             if (customer == null)
                 throw new NopException("Customer cannot be loaded");
-                
+
             var currency = currencyService.GetCurrencyById(currencySettings.PrimaryStoreCurrencyId);
             if (currency == null)
                 throw new NopException("Primary store currency cannot be loaded");
-                
+
             if (!Enum.TryParse(currency.CurrencyCode, out StripeCurrency stripeCurrency))
                 throw new NopException($"The {currency.CurrencyCode} currency is not supported by Stripe");
-                
+             
 
             var stripeCustomerService = new stripe.CustomerService(stripePaymentSettings.GetStripeClient());
             var chargeService = new stripe.ChargeService(stripePaymentSettings.GetStripeClient());
             var tokenService = new stripe.TokenService(stripePaymentSettings.GetStripeClient());
                 
             var stripeCustomer = stripeCustomerService.GetOrCreateCustomer(customer, genericAttributeService, stripePaymentSettings);
-                
-            var tokenOptions = processPaymentRequest.CreateTokenOptions(customer, stripeCurrency);
-                
+
+            var tokenOptions = processPaymentRequest.CreateTokenOptions(customerService, stateProvinceService, countryService, stripeCurrency);
             var token = tokenService.Create(tokenOptions);
-                
             var chargeOptions = processPaymentRequest.CreateChargeOptions(store, token, stripePaymentSettings.TransactionMode, stripeCurrency);
               
-
             var charge = chargeService.Create(chargeOptions);
-               
             return charge;
            
         }
@@ -226,6 +249,7 @@ namespace Nop.WebTail.Stripe.Extensions
                 throw new NopException($"The {currency.CurrencyCode} currency is not supported by Stripe");
 
             var refundService = new stripe.RefundService(stripePaymentSettings.GetStripeClient());
+
             stripe.Refund refund = refundService.Create(new stripe.RefundCreateOptions()
             {
                 Amount = (int)(refundPaymentRequest.AmountToRefund * 100m),
