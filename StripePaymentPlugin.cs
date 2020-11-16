@@ -324,6 +324,9 @@ namespace Nop.WebTail.Stripe
             this._localizationService.AddOrUpdatePluginLocaleResource("WebTail.Payments.Stripe.Fields.AdditionalFeePercentage", "Is Fee Percentage");
             this._localizationService.AddOrUpdatePluginLocaleResource("WebTail.Payments.Stripe.PaymentMethodDescription", "Pay By Credit Card");
 
+            this._localizationService.AddOrUpdatePluginLocaleResource("WebTail.Payments.Labels.ExpirationMonth", "Expiry Month");
+            this._localizationService.AddOrUpdatePluginLocaleResource("WebTail.Payments.Labels.ExpirationYear", "Expiry Year");
+
             base.Install();
         }
 
@@ -346,6 +349,10 @@ namespace Nop.WebTail.Stripe
             this._localizationService.DeletePluginLocaleResource("WebTail.Payments.Stripe.Fields.AdditionalFee");
             this._localizationService.DeletePluginLocaleResource("WebTail.Payments.Stripe.Fields.AdditionalFeePercentage");
             this._localizationService.DeletePluginLocaleResource("WebTail.Payments.Stripe.PaymentMethodDescription");
+
+
+            this._localizationService.DeletePluginLocaleResource("WebTail.Payments.Labels.ExpirationMonth");
+            this._localizationService.DeletePluginLocaleResource("WebTail.Payments.Labels.ExpirationYear");
 
             base.Uninstall();
         }

@@ -62,6 +62,9 @@ C:\SourceControl\nopCommerce\Nop-4.2\Presentation\Nop.Web\Plugins\WebTail.Stripe
 C:\SourceControl\nopCommerce\Nop-4.2\Presentation\Nop.Web\Plugins\WebTail.Stripe\Nop.WebTail.Stripe.dll
 C:\SourceControl\nopCommerce\Nop-4.2\Presentation\Nop.Web\Plugins\WebTail.Stripe\Nop.WebTail.Stripe.pdb
 C:\SourceControl\nopCommerce\Nop-4.2\Presentation\Nop.Web\Plugins\WebTail.Stripe\Stripe.net.dll
+C:\SourceControl\nopCommerce\Nop-4.3\Presentation\Nop.Web\Plugins\WebTail.Stripe\Nop.Web.Views.dll
+C:\SourceControl\nopCommerce\Nop-4.3\Presentation\Nop.Web\Plugins\WebTail.Stripe\Nop.Web.Views.pdb
+C:\SourceControl\nopCommerce\Nop-4.3\Presentation\Nop.Web\Plugins\WebTail.Stripe\Nop.Web.exe
 C:\SourceControl\nopCommerce\Nop-4.3\Presentation\Nop.Web\Plugins\WebTail.Stripe\Content\js\webtail.stripe.js
 C:\SourceControl\nopCommerce\Nop-4.3\Presentation\Nop.Web\Plugins\WebTail.Stripe\plugin.json
 C:\SourceControl\nopCommerce\Nop-4.3\Presentation\Nop.Web\Plugins\WebTail.Stripe\Stripe.net.dll
@@ -72,16 +75,6 @@ C:\SourceControl\nopCommerce\Nop-4.3\Presentation\Nop.Web\Plugins\WebTail.Stripe
 C:\SourceControl\nopCommerce\Nop-4.3\Presentation\Nop.Web\Plugins\WebTail.Stripe\Nop.WebTail.Stripe.deps.json
 C:\SourceControl\nopCommerce\Nop-4.3\Presentation\Nop.Web\Plugins\WebTail.Stripe\Nop.WebTail.Stripe.dll
 C:\SourceControl\nopCommerce\Nop-4.3\Presentation\Nop.Web\Plugins\WebTail.Stripe\Nop.WebTail.Stripe.pdb
-C:\SourceControl\nopCommerce\WebTail-Plugins\Nop.WebTail.Stripe\obj\Debug\Nop.WebTail.Stripe.csprojAssemblyReference.cache
-C:\SourceControl\nopCommerce\WebTail-Plugins\Nop.WebTail.Stripe\obj\Debug\Nop.WebTail.Stripe.csproj.CoreCompileInputs.cache
-C:\SourceControl\nopCommerce\WebTail-Plugins\Nop.WebTail.Stripe\obj\Debug\Nop.WebTail.Stripe.AssemblyInfoInputs.cache
-C:\SourceControl\nopCommerce\WebTail-Plugins\Nop.WebTail.Stripe\obj\Debug\Nop.WebTail.Stripe.AssemblyInfo.cs
-C:\SourceControl\nopCommerce\WebTail-Plugins\Nop.WebTail.Stripe\obj\Debug\Nop.WebTail.Stripe.csproj.CopyComplete
-C:\SourceControl\nopCommerce\WebTail-Plugins\Nop.WebTail.Stripe\obj\Debug\Nop.WebTail.Stripe.dll
-C:\SourceControl\nopCommerce\WebTail-Plugins\Nop.WebTail.Stripe\obj\Debug\Nop.WebTail.Stripe.pdb
-C:\SourceControl\nopCommerce\Nop-4.3\Presentation\Nop.Web\Plugins\WebTail.Stripe\Nop.Web.Views.dll
-C:\SourceControl\nopCommerce\Nop-4.3\Presentation\Nop.Web\Plugins\WebTail.Stripe\Nop.Web.Views.pdb
-C:\SourceControl\nopCommerce\Nop-4.3\Presentation\Nop.Web\Plugins\WebTail.Stripe\Nop.Web.exe
 C:\SourceControl\nopCommerce\Nop-4.3\Presentation\Nop.Web\Plugins\WebTail.Stripe\refs\Microsoft.AspNetCore.Antiforgery.dll
 C:\SourceControl\nopCommerce\Nop-4.3\Presentation\Nop.Web\Plugins\WebTail.Stripe\refs\Microsoft.AspNetCore.Authentication.Abstractions.dll
 C:\SourceControl\nopCommerce\Nop-4.3\Presentation\Nop.Web\Plugins\WebTail.Stripe\refs\Microsoft.AspNetCore.Authentication.Cookies.dll
@@ -353,3 +346,10 @@ C:\SourceControl\nopCommerce\Nop-4.3\Presentation\Nop.Web\Plugins\WebTail.Stripe
 C:\SourceControl\nopCommerce\Nop-4.3\Presentation\Nop.Web\Plugins\WebTail.Stripe\refs\System.Xml.XPath.dll
 C:\SourceControl\nopCommerce\Nop-4.3\Presentation\Nop.Web\Plugins\WebTail.Stripe\refs\System.Xml.XPath.XDocument.dll
 C:\SourceControl\nopCommerce\Nop-4.3\Presentation\Nop.Web\Plugins\WebTail.Stripe\refs\WindowsBase.dll
+C:\SourceControl\nopCommerce\WebTail-Plugins\Nop.WebTail.Stripe\obj\Debug\Nop.WebTail.Stripe.csprojAssemblyReference.cache
+C:\SourceControl\nopCommerce\WebTail-Plugins\Nop.WebTail.Stripe\obj\Debug\Nop.WebTail.Stripe.AssemblyInfoInputs.cache
+C:\SourceControl\nopCommerce\WebTail-Plugins\Nop.WebTail.Stripe\obj\Debug\Nop.WebTail.Stripe.AssemblyInfo.cs
+C:\SourceControl\nopCommerce\WebTail-Plugins\Nop.WebTail.Stripe\obj\Debug\Nop.WebTail.Stripe.csproj.CoreCompileInputs.cache
+C:\SourceControl\nopCommerce\WebTail-Plugins\Nop.WebTail.Stripe\obj\Debug\Nop.WebTail.Stripe.csproj.CopyComplete
+C:\SourceControl\nopCommerce\WebTail-Plugins\Nop.WebTail.Stripe\obj\Debug\Nop.WebTail.Stripe.dll
+C:\SourceControl\nopCommerce\WebTail-Plugins\Nop.WebTail.Stripe\obj\Debug\Nop.WebTail.Stripe.pdb

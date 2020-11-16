@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "28T/wAgjssW/PtHx1fjRl5R3XWqqUbgkxQab+T23cd3pTwU7KxxKZ9oPeOh/cEEqh0S6dLDL8btSRvg/U8TFkA==",
+  "dgSpecHash": "8WosViMRNO36mR/fh2EwR2g0hWKr0is/1ROpcExBhQYQAQvdp1tUIUVP4JnE5+R/sCXwrnq6E0XAksNZ7mWm2g==",
   "success": true,
   "projectFilePath": "C:\\SourceControl\\nopCommerce\\WebTail-Plugins\\Nop.WebTail.Stripe\\Nop.WebTail.Stripe.csproj",
   "expectedPackageFiles": [
